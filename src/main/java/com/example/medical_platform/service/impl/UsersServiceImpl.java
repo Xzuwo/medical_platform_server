@@ -1,5 +1,6 @@
 package com.example.medical_platform.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.medical_platform.entity.Users;
 import com.example.medical_platform.mapper.UsersMapper;
 import com.example.medical_platform.service.IUsersService;
@@ -24,7 +25,10 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     private UsersMapper usersMapper;
 
     @Override
-    public List<Users> SelectUsersAll() {
-        return usersMapper.selectList(null);
+    public Users users_Login(String username,String password) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("username",username);
+        queryWrapper.eq("password",password);
+        return usersMapper.selectOne(queryWrapper);
     }
 }

@@ -15,6 +15,6 @@ import java.util.List;
  * @since 2023-06-01
  */
 public interface IUsersService extends IService<Users> {
-    public List<Users> SelectUsersAll();
+    public Users users_Login(String username,String password);
 
 }
