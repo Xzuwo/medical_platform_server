@@ -36,7 +36,7 @@ public class Users implements Serializable {
 
     private String medicationHistory;
 
-    private String geneticDiseaseHistory;
+    private String introduction;
 
     private String headImage;
 

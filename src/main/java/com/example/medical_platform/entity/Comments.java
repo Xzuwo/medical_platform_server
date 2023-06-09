@@ -28,6 +28,7 @@ public class Comments implements Serializable {
 
     private Integer userId;
 
+
     private Integer postId;
 
     private Integer parentId;

@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISocialRelationshipsService extends IService<SocialRelationships> {
 
+    void addSocialRelationships(int user_id1, int user_id2);
 }

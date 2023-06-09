@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,20 +16,29 @@ import lombok.Setter;
  * </p>
  *
  * @author xzw
- * @since 2023-06-01
+ * @since 2023-06-02
  */
 @Getter
 @Setter
-public class Likes implements Serializable {
+@TableName("chat_messages")
+public class ChatMessages implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
       @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private Integer userId;
+    /**
+     * 发送
+     */
+    private Integer senderId;
 
-    private Integer postId;
+    /**
+     * 接收
+     */
+    private Integer reveiverId;
+
+    private String message;
 
       @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -40,14 +48,4 @@ public class Likes implements Serializable {
     private String b;
 
     private String c;
-
-    public Likes(Integer userId, Integer postId, LocalDateTime createTime, String a, String b, String c) {
-
-        this.userId = userId;
-        this.postId = postId;
-        this.createTime = createTime;
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
 }
