@@ -10,4 +10,5 @@ class MedicalPlatformApplicationTests {
     void contextLoads() {
     }
 
+
 }

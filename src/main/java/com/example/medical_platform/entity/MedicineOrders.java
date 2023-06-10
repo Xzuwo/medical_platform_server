@@ -36,6 +36,16 @@ public class MedicineOrders implements Serializable {
 
     private String status;
 
+    private String username;
+
+    private String drugsname;
+
+    private String drugsManufacturer;
+
+    private double drugsPrice;
+
+    private String drugsDescription;
+
       @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 

@@ -12,14 +12,15 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private LoginInterceptor loginInterceptor;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/users/**").excludePathPatterns("/admin/**")
-                .excludePathPatterns("/users/users_Login");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(loginInterceptor).addPathPatterns("/users/**").excludePathPatterns("/admin/**")
+//                .excludePathPatterns("/users/users_Login");
+//    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/images/**").addResourceLocations("file:D:\\my\\upload\\images\\");
+        registry.addResourceHandler("/upload/drugs/**").addResourceLocations("file:D:\\my\\upload\\drugs\\");
     }
 }

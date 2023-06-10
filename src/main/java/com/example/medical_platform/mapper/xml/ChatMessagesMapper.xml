@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.medical_platform.mapper.ChatMessagesMapper">
 
+    <resultMap id="BaseResultMap" type="com.example.medical_platform.entity.ChatMessages">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="senderId" column="sender_id" jdbcType="INTEGER"/>
+            <result property="reveiverId" column="reveiver_id" jdbcType="INTEGER"/>
+            <result property="message" column="message" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="a" column="a" jdbcType="VARCHAR"/>
+            <result property="b" column="b" jdbcType="VARCHAR"/>
+            <result property="c" column="c" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,sender_id,reveiver_id,
+        message,create_time,a,
+        b,c
+    </sql>
 </mapper>

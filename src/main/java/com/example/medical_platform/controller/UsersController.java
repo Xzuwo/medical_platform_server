@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,6 +40,7 @@ public class UsersController {
             da.put("token",token);
             da.put("id",users.getId());
             da.put("username",users.getUsername());
+            da.put("name",users.getName());
             da.put("msg","用户查询成功");
         }else{
             da.put("code",404);
@@ -46,8 +48,23 @@ public class UsersController {
             da.put("token",null);
             da.put("id",null);
             da.put("username",null);
+            da.put("name",null);
             da.put("msg","用户名或密码错误");
         }
         return da;
+    }
+    @RequestMapping("/users/findAll")
+    public Map<String,Object> findAll(){
+        Map<String,Object> map = new HashMap<>();
+        List<Users> usersList = iUsersService.findAll();
+        if(usersList != null && usersList.size() > 0){
+            map.put("code",200);
+            map.put("msg","查询成功");
+        }else{
+            map.put("code",404);
+            map.put("msg","查询失败");
+        }
+        map.put("usersList",usersList);
+        return map;
     }
 }

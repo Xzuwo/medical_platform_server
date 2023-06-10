@@ -31,4 +31,8 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         queryWrapper.eq("password",password);
         return usersMapper.selectOne(queryWrapper);
     }
+    @Override
+    public List<Users> findAll(){
+        return usersMapper.selectList(null);
+    }
 }
