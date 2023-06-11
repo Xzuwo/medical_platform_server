@@ -7,6 +7,7 @@ import com.example.medical_platform.mapper.CommentsMapper;
 import com.example.medical_platform.mapper.UsersMapper;
 import com.example.medical_platform.service.ICommentsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.medical_platform.util.GetNewLocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +53,7 @@ public class CommentsServiceImpl extends ServiceImpl<CommentsMapper, Comments> i
 
     @Override
     public void addComment(Comments comments) {
+        comments.setCreateTime(GetNewLocalDateTime.GetNewLocalDateTime());
         commentsMapper.insert(comments);
 
     }

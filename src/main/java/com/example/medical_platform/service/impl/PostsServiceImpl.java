@@ -66,8 +66,10 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
 
             QueryWrapper<Likes> likesWrapper = new QueryWrapper<>();
             likesWrapper.eq("post_id", posts.getId())
-                    .select("DISTINCT user_id");//去重
+                    .select("DISTINCT user_id")
+                    .inSql("id", "SELECT id FROM (SELECT id, COUNT(*) AS count FROM likes WHERE post_id = " + posts.getId() + " GROUP BY user_id) AS t WHERE t.count % 2 = 1");
             postsAndUser.setLikeCount(Math.toIntExact(likesMapper.selectCount(likesWrapper)));
+
 
 
             QueryWrapper<UserRoles> userRolesQueryWrapper=new QueryWrapper<>();

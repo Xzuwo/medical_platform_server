@@ -35,4 +35,13 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     public List<Users> findAll(){
         return usersMapper.selectList(null);
     }
+
+    @Override
+    public void setB(int userid, String b) {
+        Users users=usersMapper.selectById(userid);
+        users.setB(b);
+        System.out.println("user:"+users.toString());
+        usersMapper.updateById(users);
+    }
+
 }

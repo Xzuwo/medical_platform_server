@@ -34,7 +34,7 @@ public class PostsController {
     public HashMap<String, Object> getPostByUser(String userid, Integer page, Integer tagId){
         Integer userid2;
         if(userid==null || userid.equals("")){
-            userid2=0;
+            return new ReturnMap().returnMap(404);
         }else{
             userid2=Integer.parseInt(userid);
         }

@@ -16,5 +16,7 @@ import java.util.List;
  */
 public interface IUsersService extends IService<Users> {
     public Users users_Login(String username,String password);
+    public void setB(int userid,String b);
+
     public List<Users> findAll();
 }

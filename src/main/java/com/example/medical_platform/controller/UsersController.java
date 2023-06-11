@@ -3,6 +3,7 @@ package com.example.medical_platform.controller;
 import com.example.medical_platform.entity.Users;
 import com.example.medical_platform.service.IUsersService;
 import com.example.medical_platform.util.JWTUtil;
+import com.example.medical_platform.util.ReturnMap;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,5 +67,11 @@ public class UsersController {
         }
         map.put("usersList",usersList);
         return map;
+    }
+
+    @RequestMapping("/users/setB")
+    public Map<String,Object> setB(int userid,String b){
+        iUsersService.setB(userid,b);
+        return new ReturnMap().returnMap(200);
     }
 }
