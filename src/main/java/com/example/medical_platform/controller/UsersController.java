@@ -7,6 +7,7 @@ import com.example.medical_platform.util.ReturnMap;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -74,4 +75,83 @@ public class UsersController {
         iUsersService.setB(userid,b);
         return new ReturnMap().returnMap(200);
     }
+
+    @RequestMapping("/user_AddUsers")
+    public Map<String,Object> users_AddUsers( Users users) {
+        Map<String, Object> da=new HashMap<>();
+        Users user = new Users();
+        user = iUsersService.users_IfExit(users.getName());
+        if(user == null) {
+            iUsersService.users_AddUsers(users);
+            da.put("code",200);
+            da.put("msg","添加用户成功");
+        }else{
+            da.put("code",404);
+            da.put("msg","该用户已经存在");
+        }
+        return da;
+    }
+
+    @RequestMapping("users/users_DeleteUsers")
+    public Map<String,Object> users_DeleteUsers(Integer id) {
+        Map<String, Object> da=new HashMap<>();
+        Users user = new Users();
+        user = iUsersService.users_IfExitFindById(id);
+        if(user != null) {
+            iUsersService.users_DeleteUsers(id);
+            da.put("code",200);
+            da.put("msg","删除用户成功");
+        }else{
+            da.put("code",404);
+            da.put("msg","该用户不存在");
+        }
+        return da;
+    }
+
+    @RequestMapping("users/FindAllUsers")
+    public Map<String,Object> FindAllUsers(@RequestParam Map<String,Object> map) {
+        Map<String, Object> da=new HashMap<>();
+        List<Users> list = iUsersService.FindAllUsers(map);
+        if(list != null && list.size() >0) {
+            da.put("code", 200);
+            da.put("usersList",list);
+            da.put("msg","查询用户信息成功");
+        }else{
+            da.put("code", 404);
+            da.put("usersList",null);
+            da.put("msg","未查询到用户信息");
+        }
+        return da;
+    }
+
+    @RequestMapping("user_IfExit")
+    public Map<String,Object> users_IfExit(String username) {
+        Map<String, Object> da=new HashMap<>();
+        Users users = new Users();
+        users = iUsersService.users_IfExit(username);
+        if(users != null) {
+            da.put("user",users);
+            da.put("code",200);
+        }else{
+            da.put("user",null);
+            da.put("code",404);
+        }
+        return da;
+    }
+
+    @RequestMapping("users/UpdateUsers")
+    public Map<String,Object> UpdateUsers(Users user) {
+        Map<String, Object> da=new HashMap<>();
+        Users users = iUsersService.users_IfExitFindById(user.getId());
+        if(users != null) {
+            iUsersService.UpdateUsers(user);
+            da.put("code",200);
+            da.put("msg","当前用户密码为" + user.getPassword());
+        }else{
+            da.put("code",404);
+            da.put("msg","该用户不存在");
+        }
+        return  da;
+    }
+
 }

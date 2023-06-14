@@ -5,6 +5,7 @@ import com.example.medical_platform.entity.Users;
 import com.example.medical_platform.service.IDrugsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -53,4 +54,42 @@ public class DrugsController {
         }
         return map;
     }
+
+    @RequestMapping("users/FindAllDrugs")
+    public Map<String,Object> FindAllDrugs(@RequestParam Map<String,Object> map) {
+        Map<String,Object> da = new HashMap<>();
+        List<Drugs> list = drugsService.FindAllDrugs(map);
+        da.put("code",200);
+        da.put("msg","查询药品成功");
+        da.put("DrugList",list);
+        return da;
+    }
+
+    @RequestMapping("users/UpdateDrugs")
+    public Map<String,Object> UpdateDrugs(Drugs drugs) {
+        Map<String,Object> da = new HashMap<>();
+        drugsService.UpdateDrugs(drugs);
+        da.put("code",200);
+        da.put("msg","修改药品成功");
+        return da;
+    }
+
+    @RequestMapping("users/AddDrugs")
+    public Map<String,Object> AddDrugs(Drugs drugs) {
+        Map<String,Object> da = new HashMap<>();
+        drugsService.AddDrugs(drugs);
+        da.put("code",200);
+        da.put("msg","添加药品成功");
+        return da;
+    }
+
+    @RequestMapping("users/DeleteDrugs")
+    public Map<String,Object> DeleteDrugs(String DrugsName){
+        Map<String,Object> da = new HashMap<>();
+        drugsService.DeleteDrugs(DrugsName);
+        da.put("code",200);
+        da.put("msg","删除药品成功");
+        return da;
+    }
+
 }

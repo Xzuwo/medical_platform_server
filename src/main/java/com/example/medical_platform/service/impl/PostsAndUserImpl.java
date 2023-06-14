@@ -9,7 +9,7 @@ import com.example.medical_platform.mapper.PostsAndUserMapper;
 import com.example.medical_platform.mapper.PostsMapper;
 import com.example.medical_platform.mapper.RolesMapper;
 import com.example.medical_platform.service.IPostsAndUserService;
-import jdk.nashorn.internal.runtime.Debug;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-06-01
  */
 public interface IUserRolesService extends IService<UserRoles> {
-
+    public void AddUserRole(UserRoles userRoles);
+    public String findRoleName(Integer userId);
+    public void DeleteUserRole(Integer userId);
 }

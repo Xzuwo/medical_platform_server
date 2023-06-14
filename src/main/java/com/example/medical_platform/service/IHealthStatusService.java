@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-06-01
  */
 public interface IHealthStatusService extends IService<HealthStatus> {
-
+    public HealthStatus Get_User_HealthStatus(Integer userId);
+    public void Add_User_HealthStatus(HealthStatus healthStatus);
+    public void Delete_User_HealthStatus(Integer userId);
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -34,6 +35,45 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     @Override
     public List<Users> findAll(){
         return usersMapper.selectList(null);
+    }
+    @Override
+    public Users users_IfExit(String username) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("username",username);
+        return usersMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public Users users_IfExitFindById(Integer id) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("id",id);
+        return usersMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public void users_AddUsers(Users user) {
+        usersMapper.insert(user);
+    }
+
+    @Override
+    public void users_DeleteUsers(Integer id) {
+        usersMapper.deleteById(id);
+    }
+
+    @Override
+    public List<Users> FindAllUsers(Map<String, Object> map) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        for(Map.Entry<String,Object>entry : map.entrySet()) {
+            queryWrapper.like(entry.getKey(),entry.getValue());
+        }
+        return usersMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public void UpdateUsers(Users user) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("id",user.getId());
+        usersMapper.update(user,queryWrapper);
     }
 
     @Override
